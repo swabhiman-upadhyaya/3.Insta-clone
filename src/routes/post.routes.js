@@ -9,4 +9,10 @@ const postRouter = express.Router();
 // /api/post/
 postRouter.post("/", upload.single("image"), postController.createPostControler)
 
+// /api/post
+postRouter.get("/", postController.getPostController)
+
+// /api/post/details/:userId
+postRouter.get("/details/:id", postController.getPostDetailsController)
+
 module.exports = postRouter;
