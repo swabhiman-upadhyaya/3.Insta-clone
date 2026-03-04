@@ -1,16 +1,15 @@
 const postModel = require("../model/post.model")
 
+// requiring ImageKit
 const ImageKit = require("@imagekit/nodejs");
 const { toFile } = require("@imagekit/nodejs");
 
-// const jwt = require("jsonwebtoken")
-
-
+// Initializing ImageKit
 const Imagekit = new ImageKit({
   privateKey: process.env.IMAGEKIT_PRIVATE_KEY
 })
 
-// Api to create the post...
+// Api to create the post
 async function createPostControler(req, res) {
 
   // from the (identifyUser fnc / req.user) we'll recieve all the thing which we've given in the token to the user 
@@ -55,10 +54,10 @@ async function getPostController(req, res) {
   })
 }
 
-
-// feature: for private account
-// Here we'll fetch the post details which requesting by the user who created the same
-// if the post isn't created that user than we will tell "Access Denied"
+/* feature: for private account
+  Here we'll fetch the post details which requesting by the user who created the same
+  if the post isn't created that user than we will tell "Access Denied" 
+*/
 async function getPostDetailsController(req, res) {
 
 

@@ -1,9 +1,14 @@
 const express = require("express")
-const postController = require("../controller/post.controller")
-const multer = require("multer")
-const upload = multer({ storage: multer.memoryStorage() })
+
+/* requiring "identifyUser" router => (by which we'll able to know which user is sending the request) */
 const identifyUser = require("../middlewares/auth.middleware")
 
+/* requiring "postController" routes => (where all the logic are there) */
+const postController = require("../controller/post.controller")
+
+/* for "ImageKit" to create post */
+const multer = require("multer")
+const upload = multer({ storage: multer.memoryStorage() })
 
 const postRouter = express.Router();
 
