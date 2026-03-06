@@ -6,7 +6,11 @@ const identifyUser = require("../middlewares/auth.middleware")
 /* requiring "postController" routes => (where all the logic are there) */
 const postController = require("../controller/post.controller")
 
-/* for "ImageKit" to create post */
+/**
+ * multer is a middleware for handling multipart/form-data, which is primarily used for uploading files.
+ * In this code, we are configuring multer to use memory storage, which means that the uploaded files will be stored in memory as Buffer objects. 
+ * This is useful when you want to process the files directly in your application without saving them to disk.
+ */
 const multer = require("multer")
 const upload = multer({ storage: multer.memoryStorage() })
 
@@ -25,13 +29,35 @@ const postRouter = express.Router();
   after all we'll use the controller that's it.....
 */
 
-// /api/post/
+/**
+ * @routes POST /api/post [protected]
+ * @description Create a new post
+ * @req.body = {caption, image-file}
+ */
 postRouter.post("/", upload.single("image"), identifyUser, postController.createPostControler)
 
-// /api/post
+/**
+ * @routes GET /api/post [protected]
+ * @description Get all posts of the user 
+ */
 postRouter.get("/", identifyUser, postController.getPostController)
 
-// /api/post/details/userId
+/**
+ * @routes GET /api/post/details/:id [protected]
+ * @description Get details of a post by id (but the user who's requesting must be the owner of the post or his follower)
+ */
 postRouter.get("/details/:id", identifyUser, postController.getPostDetailsController)
+
+/**
+ * @routes POST /api/post/like/:postid
+ * @description Like a post by PostId
+ */
+postRouter.post("/like/:postId", identifyUser, postController.likePostController)
+
+/**
+ * @routes POST /api/post/dislike/:postid
+ * @description Disseapear/Dislike a post by postId
+ */
+postRouter.post("/dislike/:postId", identifyUser, postController.dislikePostController)
 
 module.exports = postRouter;

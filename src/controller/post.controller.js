@@ -3,6 +3,7 @@ const postModel = require("../model/post.model")
 // requiring ImageKit
 const ImageKit = require("@imagekit/nodejs");
 const { toFile } = require("@imagekit/nodejs");
+const likeModel = require("../model/like.model");
 
 // Initializing ImageKit
 const Imagekit = new ImageKit({
@@ -89,8 +90,72 @@ async function getPostDetailsController(req, res) {
   })
 }
 
+/* To like a Post */
+async function likePostController(req, res) {
+  
+  const username = req.user.username;
+  const postId = req.params.postId;
+
+  const post = await postModel.findById(postId)
+  if(!post){
+    return res.status(404).json({
+      message: "Post not found"
+    })
+  }
+
+  const isAlreadyLiking = await likeModel.findOne(
+    {
+      user: username,
+      post: postId
+    }
+  )
+  if(isAlreadyLiking) {
+    return res.status(409).json({
+      message: `You're already liking this post`
+    })
+  }
+
+  const like = await likeModel.create({
+    post: postId,
+    user: username
+  })
+
+  return res.status(201).json({
+    message: "Post liked successfully",
+    like
+  })
+}
+
+// To disspear/dislike a post
+async function dislikePostController(req, res) {
+
+  const username = req.user.username;
+  const postId = req.params.postId;
+
+  const isUserLiking = await likeModel.findOne(
+    {
+      user: username,
+      post: postId
+    }
+  )
+
+  if(!isUserLiking) {
+    return res.status(200).json({
+      message: `You've not even liked this post`
+    })
+  }
+
+  await likeModel.findByIdAndDelete(isUserLiking._id);
+
+  res.status(200).json({
+    message: `You're not liking this post anymore`
+  })
+}
+
 module.exports = {
   createPostControler,
   getPostController,
-  getPostDetailsController
+  getPostDetailsController,
+  likePostController,
+  dislikePostController
 }

@@ -13,7 +13,7 @@ async function followUserController(req, res) {
     })
   }
 
-  /* checking whether the followee is Exist or not in the (userModel) database 
+  /* checking whether the followee is Exist or not in the (userModel)/database 
   matlab jisko (loginned/registered) follow karna chaha rha hai wo (users collection/ userModel) mai hai ya nhi */
   const isUserAlreadyExist = await userModel.findOne({
     username: followeeUsername
@@ -52,6 +52,30 @@ async function followUserController(req, res) {
 
 }
 
+async function unfollowUserController(req, res) {
+
+  const followerUsername = req.user.username;
+  const followeeUsername = req.params.username;
+
+  const isUserFollowing = await followModel.findOne({
+    follower: followerUsername,
+    followee: followeeUsername
+  })
+
+  if (!isUserFollowing) {
+    return res.status(200).json({
+      message: `You're not following ${followeeUsername}`
+    })
+  }
+
+  await followModel.findByIdAndDelete(isUserFollowing._id)
+
+  res.status(200).json({
+    message: `You've unfollowed ${followeeUsername}`
+  })
+}
+
 module.exports = {
-  followUserController
+  followUserController,
+  unfollowUserController
 }

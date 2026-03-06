@@ -13,4 +13,11 @@ const userRouter = express.Router();
  */
 userRouter.post("/follow/:username", identifyUser, userController.followUserController)
 
+/**
+ * @route POST /api/user/unfollow/:username
+ * @description To unfollow a user
+ * @access Private
+ */
+userRouter.post("/unfollow/:username", identifyUser, userController.unfollowUserController)
+
 module.exports = userRouter
