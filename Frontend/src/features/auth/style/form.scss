@@ -1,0 +1,60 @@
+main {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+
+    form {
+      display: flex;
+      flex-direction: column;
+      min-width: 300px;
+      gap: 1rem;
+
+      input {
+        padding: 0.8rem 0.6rem;
+        height: 2rem;
+        font-family: monospace;
+        font-size: 1.02rem;
+        border-radius: 0.3rem;
+        outline: none;
+        border: none;
+      }
+
+      button {
+        height: 2rem;
+        border: none;
+        font-family: monospace;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        background: linear-gradient(to left, #f84664, #ff7d93);
+        color: black;
+        border-radius: 0.3rem;
+      }
+    }
+
+    p {
+      font-size: 1.05rem;
+      a {
+        text-decoration: none;
+        color: rgb(133, 155, 227);
+        cursor: pointer;
+
+      }
+    }
+  }
+}
