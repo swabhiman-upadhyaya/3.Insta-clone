@@ -4,7 +4,14 @@ const cors = require("cors")
 
 const app = express();
 
-app.use(cors())
+/* When we want to allow cross-origin requests then we'll use cors middleware 
+and axios doesn't store the cookies by-default so we need to store cookies/sth like that then we've to use 
+credentials: true and with that we also need to give the origin/client-side-browser in where we want to store the 
+cookies */
+app.use(cors({
+    credentials: true,
+    origin: "http://localhost:5173"
+}))
 app.use(express.json())
 app.use(cookieParser())
 

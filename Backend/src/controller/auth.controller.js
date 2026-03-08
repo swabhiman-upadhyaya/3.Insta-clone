@@ -59,7 +59,6 @@ async function registerController(req, res) {
 
 }
 
-
 // LOGIN API..........
 async function loginController(req, res) {
   const { username, email, password } = req.body;
@@ -113,7 +112,20 @@ async function loginController(req, res) {
 
 }
 
+/* GET ME API */
+async function getMeController(req, res) {
+  const userId = req.user.id
+
+  const user = await userModel.findById(userId)
+
+  res.status(200).json({
+    message: "Your details is fetched successfully",
+    user
+  })
+}
+
 module.exports = {
   registerController,
-  loginController
+  loginController,
+  getMeController
 }
