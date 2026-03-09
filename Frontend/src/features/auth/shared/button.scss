@@ -1,0 +1,22 @@
+// className='button primary-button'
+
+.button {
+  height: 2rem;
+  border: none;
+  font-family: monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  transition: all 0.3s ease-in-out;
+
+  &.primary-button {
+    background: linear-gradient(to left, #f84664, #ff7d93);
+    color: black;
+    box-shadow: 2px 2px 3px pink;
+  }
+
+  &:active{
+    scale: 0.98;
+  }
+}

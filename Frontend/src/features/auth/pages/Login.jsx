@@ -15,9 +15,11 @@ const Login = () => {
 
   const { loading, handleLogin } = useAuth();
 
-  if(loading) {
-    return(
-      <h1>LOADING.....</h1>
+  if (loading) {
+    return (
+      <main>
+        <h1>LOADING.....</h1>
+      </main>
     )
   }
 
@@ -47,7 +49,7 @@ const Login = () => {
             type="text"
             name='password'
             placeholder='Enter Password' />
-          <button>Login</button>
+          <button className='button primary-button'>Login</button>
         </form>
         <p>Don't have an account? <Link to="/register">Register</Link></p>
       </div>
