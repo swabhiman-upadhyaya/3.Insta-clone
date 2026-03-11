@@ -73,7 +73,10 @@ async function loginController(req, res) {
         email: email
       }
     ]
-  })
+  }).select("+password") 
+  /* select("+password" brings the password accding to the user as in the schema password is selected to be false 
+  which means password doesn't come by-default 
+  (because it is reqd to compare the user password in the time of login from the db password) */
 
   if (!user) {
     return res.status(404).json({

@@ -60,4 +60,11 @@ postRouter.post("/like/:postId", identifyUser, postController.likePostController
  */
 postRouter.post("/dislike/:postId", identifyUser, postController.dislikePostController)
 
+/**
+ * @route GET /api/post/feed
+ * @description To get all the resources of the user to show in the feed
+ * @access Private
+ */
+postRouter.get("/feed", identifyUser, postController.getFeedController)
+
 module.exports = postRouter;

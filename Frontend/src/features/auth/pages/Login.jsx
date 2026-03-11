@@ -28,12 +28,12 @@ const Login = () => {
 
     const res = await handleLogin(username, password)
     console.log("User login comp: ", res)
-    navigate("/")
+    navigate("/");
   }
 
 
   return (
-    <main>
+    <main className='auth-form'>
       <div className="form-container">
         <h1>Login</h1>
         <form onSubmit={submitHandler}>

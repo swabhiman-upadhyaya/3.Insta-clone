@@ -92,12 +92,12 @@ async function getPostDetailsController(req, res) {
 
 /* To like a Post */
 async function likePostController(req, res) {
-  
+
   const username = req.user.username;
   const postId = req.params.postId;
 
   const post = await postModel.findById(postId)
-  if(!post){
+  if (!post) {
     return res.status(404).json({
       message: "Post not found"
     })
@@ -109,7 +109,7 @@ async function likePostController(req, res) {
       post: postId
     }
   )
-  if(isAlreadyLiking) {
+  if (isAlreadyLiking) {
     return res.status(409).json({
       message: `You're already liking this post`
     })
@@ -139,7 +139,7 @@ async function dislikePostController(req, res) {
     }
   )
 
-  if(!isUserLiking) {
+  if (!isUserLiking) {
     return res.status(200).json({
       message: `You've not even liked this post`
     })
@@ -152,10 +152,50 @@ async function dislikePostController(req, res) {
   })
 }
 
+// To get the feed of the user
+async function getFeedController(req, res) {
+
+  // logged in user (comes from auth middleware)
+  const user = req.user;
+
+  /* find all posts from DB
+     populate("user") → bring all the user data who created the post
+     lean() → convert mongoose document to normal JS object so we can modify it */
+  const posts = await postModel.find().populate("user").lean();
+
+  /* "map with async" returns an array of promises so
+     Promise.all() resolves all of them and gives final array */
+  const updatedPosts = await Promise.all(
+
+    posts.map(async (post) => {
+
+      /* check if the current logged in user has liked this post */
+      const isLiked = await likeModel.findOne({
+        user: user.username,
+        post: post._id
+      });
+
+      /* convert result to true / false
+         if like document exists → true
+         if not → false */
+      post.isLiked = Boolean(isLiked);
+
+      return post; // return modified post object
+    })
+
+  );
+
+  res.status(200).json({
+    message: "All Posts fetched successfully",
+    posts: updatedPosts // send posts with isLiked property
+  });
+}
+
 module.exports = {
   createPostControler,
   getPostController,
   getPostDetailsController,
   likePostController,
-  dislikePostController
+  dislikePostController,
+  getFeedController
 }
