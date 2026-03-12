@@ -10,57 +10,57 @@ main.auth-form {
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
 
-  .form-container {
+.form-container {
 
-    @include flex-column(0.5rem);
+  @include flex-column(0.5rem);
 
-    align-items: center;
-    background: linear-gradient(to left, #f76980, #691f2b);
-    min-height: 350px;
-    min-width: 320px;
-    border-radius: 0.6rem;
-    box-shadow: 2px 3px 7px #ea919f;
-    transition: all 0.5s ease;
+  align-items: center;
+  background: linear-gradient(to left, #f76980, #691f2b);
+  min-height: 350px;
+  min-width: 320px;
+  border-radius: 0.6rem;
+  box-shadow: 2px 3px 7px #ea919f;
+  transition: all 0.5s ease;
 
-    &:hover {
-      box-shadow: 4px 3px 8px #ea919f;
-      scale: 1.01;
+  &:hover {
+    box-shadow: 4px 3px 8px #ea919f;
+    scale: 1.01;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    text-align: center;
+  }
+
+
+  form {
+
+    @include flex-column(1rem);
+
+    width: 300px;
+
+    flex: 1;
+
+    input {
+      padding: 0.8rem 0.6rem;
+      height: 2rem;
+      font-size: 1.02rem;
+      border-radius: 0.3rem;
+      outline: none;
+      font-family: monospace;
+      border: none;
+      border: 2px solid #383838;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 500;
-      text-align: center;
-    }
 
+  }
 
-    form {
-
-      @include flex-column(1rem);
-
-      width: 300px;
-
-      flex: 1;
-
-      input {
-        padding: 0.8rem 0.6rem;
-        height: 2rem;
-        font-family: monospace;
-        font-size: 1.02rem;
-        border-radius: 0.3rem;
-        outline: none;
-        border: none;
-        border: 2px solid #383838;
-      }
-
-
-    }
-
-    p {
-      font-size: 1.05rem;
-      padding: 0.5rem;
-    }
+  p {
+    font-size: 1.05rem;
+    padding: 0.5rem;
   }
 }

@@ -141,7 +141,7 @@ async function dislikePostController(req, res) {
 
   if (!isUserLiking) {
     return res.status(200).json({
-      message: `You've not even liked this post`
+      message: `You didn't even liked this post`
     })
   }
 
@@ -161,7 +161,7 @@ async function getFeedController(req, res) {
   /* find all posts from DB
      populate("user") → bring all the user data who created the post
      lean() → convert mongoose document to normal JS object so we can modify it */
-  const posts = await postModel.find().populate("user").lean();
+  const posts = await postModel.find({}).sort({ _id: -1 }).populate("user").lean();
 
   /* "map with async" returns an array of promises so
      Promise.all() resolves all of them and gives final array */

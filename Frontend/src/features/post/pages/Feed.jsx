@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import "../style/feed.scss"
 import Post from '../components/Post.jsx'
 import { usePost } from '../hooks/usePost'
+import Nav from '../../shared/Nav.jsx'
 
 
 const Feed = () => {
@@ -22,7 +23,9 @@ const Feed = () => {
 
   return (
     <main className='feed-page'>
-      <div className="feed">
+
+      <section className="feed">
+
         <div className="posts">
           {feed.map((post, idx) => {
             return (
@@ -30,7 +33,12 @@ const Feed = () => {
             )
           })}
         </div>
-      </div>
+
+        <div className="nav-bar">
+          <Nav />
+        </div>
+      </section>
+
     </main>
   )
 }

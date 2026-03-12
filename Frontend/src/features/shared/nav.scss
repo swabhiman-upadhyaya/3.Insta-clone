@@ -1,0 +1,40 @@
+.nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    color: red;
+
+    .nav-icons {
+      display: flex;
+      width: 332px;
+      background-color: rgba(0, 0, 0, 0.304);
+      backdrop-filter: blur(20px);
+      justify-content: space-between;
+      padding: 0.4rem 0.8rem;
+
+      button {
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        aspect-ratio: 1/1;
+        border: 2px solid white;
+        padding: 0.1rem;
+        border-radius: 0.3rem;
+        outline: none;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        &:active{
+          transform: scale(0.92);
+        }
+
+        svg {
+          width: 1.6rem;
+          aspect-ratio: 1/1;
+        }
+      }
+
+    }
+}

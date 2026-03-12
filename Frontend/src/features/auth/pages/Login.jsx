@@ -27,8 +27,7 @@ const Login = () => {
     e.preventDefault();
 
     const res = await handleLogin(username, password)
-    console.log("User login comp: ", res)
-    navigate("/");
+    navigate("/feed");
   }
 
 

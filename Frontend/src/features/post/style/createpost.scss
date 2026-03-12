@@ -1,0 +1,36 @@
+.create-post-page {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  label {
+    border: 2px solid white;
+    text-align: center;
+    padding: 0.8rem 0.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1rem;
+    font-size: 1.1rem;
+    border-radius: 0.3rem;
+    border: 2px solid whitesmoke;
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+
+    &:active {
+      scale: 0.97;
+    }
+  }
+
+  input {
+    padding: 0.8rem 0.6rem;
+    height: 2rem;
+    font-size: 1.02rem;
+    border-radius: 0.3rem;
+    outline: none;
+    border: none;
+    border: 2px solid #383838;
+  }
+}
