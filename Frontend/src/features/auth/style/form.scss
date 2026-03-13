@@ -1,66 +1,139 @@
+/* ============================================================
+   Auth Forms — Instagram-style login / register card
+   ============================================================ */
+
+/* Reusable flex-column helper (kept from original) */
 @mixin flex-column($gap: 0rem) {
   display: flex;
   flex-direction: column;
   gap: $gap;
 }
 
+/* Full-page centering wrapper — same structure as before */
 main.auth-form {
   height: 100vh;
   width: 100%;
   display: flex;
+  flex-direction: column;
+  /* Stacks card + "Sign up" link underneath */
   justify-content: center;
   align-items: center;
+  gap: 1rem;
+  background-color: var(--ig-bg);
+  /* Changed from dark — now Instagram's off-white */
 }
 
-
+/* ── Card Container ───────────────────────────────────────── */
 .form-container {
-
-  @include flex-column(0.5rem);
+  @include flex-column(1rem);
 
   align-items: center;
-  background: linear-gradient(to left, #f76980, #691f2b);
-  min-height: 350px;
-  min-width: 320px;
-  border-radius: 0.6rem;
-  box-shadow: 2px 3px 7px #ea919f;
-  transition: all 0.5s ease;
 
-  &:hover {
-    box-shadow: 4px 3px 8px #ea919f;
-    scale: 1.01;
-  }
+  /* Instagram's white bordered card — replaces the pink gradient box */
+  background: var(--ig-white);
+  border: 1px solid var(--ig-border);
+  border-radius: 1px;
+  /* Instagram's card is nearly square-edged */
+  box-shadow: none;
+  /* No shadow — keep it flat like Instagram */
+  min-height: unset;
+  /* Remove forced height — let content breathe */
+  min-width: 350px;
+  max-width: 400px;
+  width: 100%;
+  padding: 2.5rem 2.5rem 1.5rem;
+  transition: none;
+  /* Removed the hover scale — Instagram doesn't do that */
 
+  /* ── Instagram logo / wordmark area ───────────────────── */
+  /* The h1 acts as the brand/form title */
   h1 {
-    font-size: 2.5rem;
-    font-weight: 500;
+    /* Gradient text mimicking Instagram's wordmark color */
+    background: var(--ig-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: 'Billabong', 'Grand Hotel', cursive, serif;
+    /* Instagram uses a script font */
+    font-size: 2.8rem;
+    font-weight: 400;
+    /* Instagram's wordmark is thin, not bold */
     text-align: center;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
   }
 
-
+  /* ── Form inputs ──────────────────────────────────────── */
   form {
-
-    @include flex-column(1rem);
-
-    width: 300px;
-
-    flex: 1;
+    @include flex-column(0.5rem);
+    width: 100%;
+    /* Changed from 300px — now fluid */
 
     input {
-      padding: 0.8rem 0.6rem;
-      height: 2rem;
-      font-size: 1.02rem;
-      border-radius: 0.3rem;
+      padding: 0.55rem 0.75rem;
+      height: 2.25rem;
+      font-size: 0.75rem;
+      /* Instagram uses small field text */
+      border-radius: 3px;
+      /* Very slight rounding */
       outline: none;
-      font-family: monospace;
-      border: none;
-      border: 2px solid #383838;
+      font-family: inherit;
+      /* Changed from dark border — Instagram uses light grey border on white bg */
+      border: 1px solid var(--ig-border);
+      background-color: #fafafa;
+      /* Slightly off-white field background */
+      color: var(--ig-dark);
+      width: 100%;
+
+      &::placeholder {
+        color: var(--ig-medium);
+        /* Muted placeholder text */
+        font-size: 0.75rem;
+      }
+
+      /* Focus ring — Instagram uses a slightly darker border */
+      &:focus {
+        border-color: #a8a8a8;
+        background-color: #fff;
+      }
     }
 
+    /* ── "OR" divider (visual only) — Instagram style ──── */
+    .or-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0.5rem 0;
 
+      span {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--ig-medium);
+        letter-spacing: 0.08em;
+      }
+
+      &::before,
+      &::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background-color: var(--ig-border);
+      }
+    }
   }
 
+  /* ── Bottom "Sign up / Log in" link ─────────────────── */
   p {
-    font-size: 1.05rem;
+    font-size: 0.875rem;
     padding: 0.5rem;
+    color: var(--ig-medium);
+    /* Changed from white — muted on white card */
+    text-align: center;
+
+    a {
+      font-weight: 600;
+      color: #0095f2;
+      /* Instagram's link blue */
+    }
   }
 }

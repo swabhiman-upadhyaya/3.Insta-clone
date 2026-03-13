@@ -1,5 +1,27 @@
 @use "./button.scss";
 
+/* ============================================================
+   Global Base Styles — Instagram-style clean white theme
+   ============================================================ */
+
+/* CSS custom properties (design tokens) matching Instagram's palette */
+:root {
+  --ig-white: #ffffff;
+  --ig-bg: #fafafa;
+  /* Instagram's off-white page background */
+  --ig-dark: #262626;
+  /* Primary text — near-black */
+  --ig-medium: #737373;
+  /* Secondary / muted text */
+  --ig-border: #dbdbdb;
+  /* Subtle border colour */
+  --ig-red: #ed4956;
+  /* Like / error accent */
+  /* Instagram's iconic gradient: purple → orange */
+  --ig-gradient: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  --ig-gradient-stories: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,13 +33,22 @@ body,
 #root {
   height: 100%;
   width: 100%;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #424242;
-  color: #ededed;
+  /* Instagram uses -apple-system / Segoe UI as the primary font stack */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  background-color: var(--ig-bg);
+  /* Changed from dark #424242 */
+  color: var(--ig-dark);
+  /* Changed from light #ededed */
 }
 
+/* Links follow Instagram's dark style, not blue */
 a {
   text-decoration: none;
-  color: #1d4ef0;
+  color: var(--ig-dark);
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.75;
+  }
 }

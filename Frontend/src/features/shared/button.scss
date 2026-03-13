@@ -1,22 +1,49 @@
-// className='button primary-button'
+/* ============================================================
+   Button Styles — Instagram-style
+   Usage: className='button primary-button'
+   ============================================================ */
 
 .button {
+  /* Base button reset + shared properties */
   height: 2rem;
   border: none;
-  font-family: monospace;
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  /* Instagram uses ~14px for button text */
+  font-weight: 600;
+  /* Semi-bold, matching Instagram's button weight */
   cursor: pointer;
-  border-radius: 0.3rem;
-  transition: all 0.3s ease-in-out;
+  border-radius: 8px;
+  /* Instagram uses rounded corners */
+  transition: opacity 0.15s ease-in-out;
+  letter-spacing: 0.01em;
 
+  /* Instagram's primary CTA button — solid blue */
   &.primary-button {
-    background: linear-gradient(to left, #f84664, #ff7d93);
-    color: black;
-    box-shadow: 2px 2px 3px pink;
+    background-color: #0095f2;
+    /* Instagram's brand blue */
+    color: #ffffff;
+    box-shadow: none;
+    /* Instagram buttons have no shadow */
+    padding: 0 1rem;
+    width: 100%;
+    /* Full-width, matching Instagram's form style */
+
+    &:hover {
+      background-color: #1877f2;
+      /* Slightly deeper blue on hover */
+    }
   }
 
-  &:active{
+  /* Press feedback — subtle scale-down like native mobile */
+  &:active {
+    opacity: 0.8;
     scale: 0.98;
+  }
+
+  /* Disabled state — Instagram dims the button */
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
   }
 }

@@ -1,40 +1,65 @@
+/* ============================================================
+   Nav Bar — Instagram-style bottom tab bar
+   Fixed to the bottom, white background, icon-only tabs
+   ============================================================ */
+
 .nav-bar {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%);
-    color: red;
+  /* Instagram's bottom tab bar is fixed at the very bottom */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
 
-    .nav-icons {
+  /* White bar with a subtle top border — exactly like Instagram */
+  background-color: var(--ig-white);
+  border-top: 1px solid var(--zig-border);
+  /* Changed from blurred dark pill */
+
+  .nav-icons {
+    display: flex;
+    justify-content: space-around;
+    /* Even spacing across full width */
+    align-items: center;
+    max-width: 480px;
+    /* Centre on wider screens */
+    margin: 0 auto;
+    padding: 0.6rem 0;
+    /* Comfortable tap target height */
+
+    /* Individual icon button — transparent, no border */
+    button {
+      background-color: transparent;
+      /* Changed from solid white */
       display: flex;
-      width: 332px;
-      background-color: rgba(0, 0, 0, 0.304);
-      backdrop-filter: blur(20px);
-      justify-content: space-between;
-      padding: 0.4rem 0.8rem;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      /* Removed previous border */
+      outline: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      border-radius: 50%;
+      /* Circular ripple area */
+      transition: background-color 0.15s ease, transform 0.1s ease;
 
-      button {
-        background-color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        aspect-ratio: 1/1;
-        border: 2px solid white;
-        padding: 0.1rem;
-        border-radius: 0.3rem;
-        outline: none;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-
-        &:active{
-          transform: scale(0.92);
-        }
-
-        svg {
-          width: 1.6rem;
-          aspect-ratio: 1/1;
-        }
+      /* Subtle background on hover */
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
       }
 
+      /* Press animation */
+      &:active {
+        transform: scale(0.88);
+      }
+
+      svg {
+        width: 1.7rem;
+        /* Slightly smaller — matches Instagram */
+        aspect-ratio: 1 / 1;
+        color: var(--ig-dark);
+        /* Changed from white — now dark icons on white bg */
+      }
     }
+  }
 }
