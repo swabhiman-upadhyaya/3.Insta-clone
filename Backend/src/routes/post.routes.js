@@ -6,12 +6,10 @@ const identifyUser = require("../middlewares/auth.middleware")
 /* requiring "postController" routes => (where all the logic are there) */
 const postController = require("../controller/post.controller")
 
-/**
- * multer is a middleware for handling multipart/form-data, which is primarily used for uploading files.
- * In this code, we are configuring multer to use memory storage, which means that the uploaded files will be stored in memory as Buffer objects. 
- * This is useful when you want to process the files directly in your application without saving them to disk.
- */
+// requiring the multer package
 const multer = require("multer")
+
+// store uploaded files in RAM, not on disk
 const upload = multer({ storage: multer.memoryStorage() })
 
 const postRouter = express.Router();

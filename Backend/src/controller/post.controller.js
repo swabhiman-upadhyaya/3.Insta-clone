@@ -1,9 +1,9 @@
 const postModel = require("../model/post.model")
+const likeModel = require("../model/like.model");
 
 // requiring ImageKit
 const ImageKit = require("@imagekit/nodejs");
 const { toFile } = require("@imagekit/nodejs");
-const likeModel = require("../model/like.model");
 
 // Initializing ImageKit
 const Imagekit = new ImageKit({

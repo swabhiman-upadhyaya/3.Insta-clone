@@ -41,7 +41,7 @@ const Register = () => {
 
     await handleRegister(username, email, password);
 
-    navigate("/");
+    navigate("/");   /* Redirect to feed after successful registration */
   }
 
   return (

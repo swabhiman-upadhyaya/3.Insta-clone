@@ -9,6 +9,20 @@
   gap: $gap;
 }
 
+main {
+  /* Full-page centering wrapper — same structure as before */
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* Stacks card + "Sign up" link underneath */
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--ig-bg);
+  /* Changed from dark — now Instagram's off-white */
+}
+
 /* Full-page centering wrapper — same structure as before */
 main.auth-form {
   height: 100vh;
